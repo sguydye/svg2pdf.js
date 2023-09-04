@@ -50,7 +50,10 @@ export async function svg2pdf(
   pdf.setFillColor(fill.r, fill.g, fill.b)
   pdf.setFont(context.attributeState.fontFamily)
   // correct for a jsPDF-instance measurement unit that differs from `pt`
-  pdf.setFontSize(context.attributeState.fontSize * pdf.internal.scaleFactor)
+  pdf.setFontSize(
+    (options.documentFontSize ? options.documentFontSize : context.attributeState.fontSize) *
+      pdf.internal.scaleFactor
+  )
 
   const node = parse(element, idMap)
   await node.render(context)
@@ -77,4 +80,5 @@ export interface Svg2PdfOptions {
   width?: number
   height?: number
   loadExternalStyleSheets?: boolean
+  documentFontSize?: number
 }
