@@ -67,4 +67,11 @@ export interface Svg2pdfOptions {
    * policies are ignored. The default is false.
    */
   loadExternalStyleSheets?: boolean
+
+  /**
+   * Root document font size
+   * Used to override default hardcoded value(16)
+   * Impacts calculation of font size on nodes with relative units (em, rem) 
+   */
+  documentFontSize?: number
 }
