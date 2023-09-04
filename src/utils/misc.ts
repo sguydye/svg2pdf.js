@@ -15,6 +15,13 @@ export function toPixels(value: string | null, pdfFontSize: number): number {
     return parseFloat(match[1]) * pdfFontSize
   }
 
+  // This is not a proper rem handling, it only workds for us, since our svg's use rem only for root element
+  // rem
+  match = value && value.toString().match(/^([\-0-9.]+)rem$/)
+  if (match) {
+    return parseFloat(match[1]) * pdfFontSize
+  }
+
   // pixels
   match = value && value.toString().match(/^([\-0-9.]+)(px|)$/)
   if (match) {
